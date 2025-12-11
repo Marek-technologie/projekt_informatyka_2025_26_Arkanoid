@@ -22,7 +22,7 @@ public:
         aktualizujKolor();
     }
 
-    // Obs³uga trafienia
+    // Obsluga trafienia
     void trafienie() {
         if (jestZniszczony)
             return;
@@ -34,10 +34,10 @@ public:
             jestZniszczony = true;
     }
 
-    // Aktualizacja koloru w zale¿noœci od ¿ycia
+    // Aktualizacja koloru w zaleznoœci od zycia
     void aktualizujKolor() {
         static const std::array<sf::Color, 4> colorLUT = {
-            sf::Color::Transparent, // 0 HP (teoretycznie nieu¿ywane, bo wtedy jest zniszczony)
+            sf::Color::Transparent, // 0 HP 
             sf::Color::Yellow,      // 1 HP
             sf::Color::Magenta,     // 2 HP
             sf::Color::Red          // 3 HP
@@ -60,3 +60,4 @@ public:
     int getHP() const { return punktyZycia; }
 
 };
+
