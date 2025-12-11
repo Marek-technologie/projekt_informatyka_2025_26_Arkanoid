@@ -1,7 +1,6 @@
-// Game.cpp - Wklej to jako ca³¹ zawartoœæ pliku
 #include "Game.h"
 #include <iostream>
-#include <algorithm> // potrzebne do std::remove_if
+#include <algorithm> 
 
 Game::Game()
     : m_paletka(800.f / 2 - 50, 600.f - 30, 100, 20, 8.f),
@@ -13,7 +12,7 @@ Game::Game()
 void Game::reset()
 {
     m_paletka.setPosition(800.f / 2 - 50, 600.f - 30);
-    // Reset pi³ki (startuje w górê)
+    // Reset pilki 
     m_pilka = Pilka(800.f / 2, 600.f / 2, 4.f, -4.f, 10.f);
     m_bloki.clear();
     loadLevel();
@@ -25,7 +24,7 @@ void Game::update(sf::Time dt) {
 
     m_pilka.move();
     m_pilka.bounceWalls(800.f, 600.f);
-    m_pilka.collideWithPaddle(m_paletka); // Tu ju¿ nie ma HIT (usunêliœmy w kroku 1)
+    m_pilka.collideWithPaddle(m_paletka); 
 
     for (auto& brick : m_bloki)
     {
@@ -35,12 +34,12 @@ void Game::update(sf::Time dt) {
         sf::FloatRect brickBounds = brick.getGlobalBounds();
         sf::FloatRect intersection;
 
-        // --- KOLIZJA Z CEG£¥ ---
+        // kolizja cegly
         if (ballBounds.intersects(brickBounds, intersection))
         {
             brick.trafienie();
 
-            // TU JEST JEDYNE MIEJSCE Z "HIT"
+            
             std::cout << "HIT" << std::endl;
 
             if (brick.czyZniszczony()) {
@@ -105,11 +104,11 @@ void Game::loadLevel()
     }
 }
 
-// --- NOWE METODY (Save/Load) ---
+// Save/Load 
 
 void Game::saveGame()
 {
-    // U¿ywamy klasy zdefiniowanej w Game.h, nie potrzebujemy tu jej definicji
+    
     GameSnapshot snapshot;
     snapshot.capture(m_paletka, m_pilka, m_bloki);
 
@@ -132,4 +131,5 @@ bool Game::loadGame()
     }
     std::cout << "Nie udalo sie wczytac gry!" << std::endl;
     return false;
+
 }
