@@ -9,7 +9,7 @@ App::App()
     m_window.setFramerateLimit(60);
 
     
-    if (!m_font.loadFromFile("C:/Windows/Fonts/arial.ttf")) {
+    if (!m_font.loadFromFile("C:/Windows/Fonts/Andada-Regular.otf")) {
         std::cerr << "Blad ladowania czcionki!" << std::endl;
     }
 
@@ -155,4 +155,5 @@ void App::render()
     m_window.display();
 
 }
+
 
