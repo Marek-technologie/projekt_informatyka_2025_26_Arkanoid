@@ -83,7 +83,7 @@ void App::processEvents()
                     m_game.saveGame();
             }
         }
-        // 3. Obsluga GAME OVER (NOWE)
+        // 3. Obsluga GAME OVER 
         else if (m_state == GameState::GameOver)
         {
             if (e.type == sf::Event::KeyPressed)
@@ -155,3 +155,4 @@ void App::render()
     m_window.display();
 
 }
+
