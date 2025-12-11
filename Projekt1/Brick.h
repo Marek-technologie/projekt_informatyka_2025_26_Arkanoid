@@ -34,7 +34,7 @@ public:
             jestZniszczony = true;
     }
 
-    // Aktualizacja koloru w zaleznoœci od zycia
+    // Aktualizacja koloru w zaleznosci od zycia
     void aktualizujKolor() {
         static const std::array<sf::Color, 4> colorLUT = {
             sf::Color::Transparent, // 0 HP 
@@ -60,4 +60,5 @@ public:
     int getHP() const { return punktyZycia; }
 
 };
+
 
