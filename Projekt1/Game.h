@@ -1,8 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include <fstream>   // DODANO: do zapisu plików
-#include <iostream>  // DODANO: do wypisywania b³êdów
+#include <fstream>   
+#include <iostream>  
 #include "Paletka.h"
 #include "Pilka.h"
 #include "Brick.h"
@@ -13,7 +13,7 @@ struct BlockData {
     int punktyZycia;
 };
 
-// Klasa odpowiedzialna za zrzut stanu gry
+// zrzut stanu gry
 class GameSnapshot {
 private:
     sf::Vector2f paddlePosition;
@@ -22,7 +22,7 @@ private:
     std::vector<BlockData> blocks;
 
 public:
-    // Metoda pobieraj¹ca stan gry (Capture)
+    // pobieranie stanu gry 
     void capture(const Paletka& paletka, const Pilka& pilka, const std::vector<Brick>& kamienie) {
         paddlePosition = paletka.getPaddlePosition();
         ballPosition = pilka.getPosition();
@@ -32,7 +32,7 @@ public:
         blocks.reserve(kamienie.size());
 
         for (const auto& stone : kamienie) {
-            // Zapisujemy tylko jeœli ceg³a nie jest zniszczona (lub zapisujemy wszystkie ¿ywe)
+            
             if (!stone.czyZniszczony()) {
                 BlockData data;
                 data.x = stone.getPosition().x;
@@ -43,19 +43,17 @@ public:
         }
     }
 
-    // Metoda aplikuj¹ca stan gry (Apply)
+    // metoda aplikujaca stan gry 
     void apply(Paletka& paletka, Pilka& pilka, std::vector<Brick>& kamienie) {
-        // 1. Przywróæ paletkê
+    
         paletka.setPosition(paddlePosition.x, paddlePosition.y);
 
-        // 2. Przywróæ pi³kê (zak³adamy, ¿e Pilka ma publiczne pole shape lub settery - dodaliœmy settery wczeœniej)
-        // Musimy u¿yæ ma³ego "hacka" lub setterów. W Pilka.h doda³em settery setVx/Vy, ale tutaj musimy ustawiæ te¿ pozycjê.
-        // Najlepiej zresetowaæ pi³kê nowymi danymi.
+      
         pilka = Pilka(ballPosition.x, ballPosition.y, ballVelocity.x, ballVelocity.y, pilka.getRadius());
 
-        // 3. Przywróæ bloki
+    
         kamienie.clear();
-        sf::Vector2f rozmiar(70.f, 25.f); // Rozmiar ceg³y (taki sam jak w loadLevel)
+        sf::Vector2f rozmiar(70.f, 25.f); 
 
         for (const auto& data : blocks) {
             kamienie.emplace_back(
@@ -110,7 +108,7 @@ public:
     void draw(sf::RenderTarget& target);
     void reset();
 
-    // NOWE METODY
+  
     void saveGame();
     bool loadGame();
     bool isGameOver() const { return m_gameOver; }
@@ -132,4 +130,5 @@ private:
     std::vector<Brick> m_bloki;
 
     void loadLevel();
+
 };
