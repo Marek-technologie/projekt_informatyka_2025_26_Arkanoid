@@ -8,7 +8,7 @@ App::App()
 {
     m_window.setFramerateLimit(60);
 
-    // Zamiast "fonts/arial.ttf" wpisz:
+    
     if (!m_font.loadFromFile("C:/Windows/Fonts/arial.ttf")) {
         std::cerr << "Blad ladowania czcionki!" << std::endl;
     }
@@ -20,7 +20,7 @@ App::App()
     m_gameOverText.setOutlineColor(sf::Color::White);
     m_gameOverText.setOutlineThickness(1);
 
-    // Wyœrodkowanie tekstu
+    // Wysrodkowanie tekstu
     sf::FloatRect textRect = m_gameOverText.getLocalBounds();
     m_gameOverText.setOrigin(textRect.left + textRect.width / 2.0f,
         textRect.top + textRect.height / 2.0f);
@@ -45,7 +45,7 @@ void App::processEvents()
         if (e.type == sf::Event::Closed)
             m_window.close();
 
-        // 1. Obs³uga MENU
+        // 1. Obsluga MENU
         if (m_state == GameState::Menu)
         {
             if (e.type == sf::Event::KeyPressed)
@@ -61,7 +61,7 @@ void App::processEvents()
                         m_game.reset();
                         m_state = GameState::Playing;
                     }
-                    else if (selected == 1) { // Wczytaj gre
+                    else if (selected == 1) { 
                         if (m_game.loadGame()) m_state = GameState::Playing;
                     }
                     else if (selected == 2) {
@@ -70,7 +70,7 @@ void App::processEvents()
                 }
             }
         }
-        // 2. Obs³uga GRY
+        // 2. Obsluga GRY
         else if (m_state == GameState::Playing)
         {
             if (e.type == sf::Event::KeyPressed)
@@ -83,7 +83,7 @@ void App::processEvents()
                     m_game.saveGame();
             }
         }
-        // 3. Obs³uga GAME OVER (NOWE)
+        // 3. Obsluga GAME OVER (NOWE)
         else if (m_state == GameState::GameOver)
         {
             if (e.type == sf::Event::KeyPressed)
@@ -93,7 +93,7 @@ void App::processEvents()
                     m_game.reset();
                     m_state = GameState::Playing;
                 }
-                else if (e.key.code == sf::Keyboard::Escape) // Powrót do menu
+                else if (e.key.code == sf::Keyboard::Escape) // PowrÃ³t do menu
                 {
                     m_state = GameState::Menu;
                 }
@@ -106,7 +106,7 @@ void App::update()
 {
     if (m_state == GameState::Playing)
     {
-        // Sprawdzanie sterowania paletk¹
+        // sterowanie paletki
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
             m_game.movePaddleLeft(800.f);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
@@ -114,7 +114,7 @@ void App::update()
 
         m_game.update(sf::seconds(1.f / 60.f));
 
-        // SPRAWDZENIE CZY PRZEGRALIŒMY
+        // sprawdzenie czy przegralismy
         if (m_game.isGameOver())
         {
             m_state = GameState::GameOver;
@@ -138,19 +138,20 @@ void App::render()
     {
         m_game.draw(m_window);
     }
-    else if (m_state == GameState::GameOver) // Rysowanie Game Over
+    else if (m_state == GameState::GameOver) 
     {
-        // Rysujemy grê w tle (zamro¿on¹), ¿eby by³o widaæ, jak przegraliœmy
+        
         m_game.draw(m_window);
 
-        // Rysujemy przyciemnienie (opcjonalne, ale wygl¹da pro)
+      
         sf::RectangleShape overlay(sf::Vector2f(800, 600));
         overlay.setFillColor(sf::Color(0, 0, 0, 150));
         m_window.draw(overlay);
 
-        // Rysujemy tekst
+       
         m_window.draw(m_gameOverText);
     }
 
     m_window.display();
+
 }
