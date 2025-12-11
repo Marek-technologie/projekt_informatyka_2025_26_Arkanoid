@@ -43,11 +43,12 @@ public:
         target.draw(shape);
     }
 
-    // NAPRAWIONE: Zwracanie wektora
+    
     sf::Vector2f getPaddlePosition() const { return sf::Vector2f(x, y); }
 
     float getX() const { return x; }
     float getY() const { return y; }
     float getSzerokosc() const { return szerokosc; }
     float getWysokosc() const { return wysokosc; }
+
 };
