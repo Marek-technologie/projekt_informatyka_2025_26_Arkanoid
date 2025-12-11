@@ -66,11 +66,12 @@ public:
     float getVx() const { return vx; }   // Dodane
     void setVx(float n) { vx = n; }      // Dodane
 
-    // NAPRAWIONE: Zwracanie wektora zamiast operatora przecinka
+    
     sf::Vector2f getPosition() const { return sf::Vector2f(x, y); }
     sf::Vector2f getVelocity() const { return sf::Vector2f(vx, vy); }
 
     float getX() const { return x; }
     float getY() const { return y; }
     float getRadius() const { return radius; }
+
 };
