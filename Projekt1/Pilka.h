@@ -63,8 +63,8 @@ public:
     float getVy() const { return vy; }
     void setVy(float n) { vy = n; }
 
-    float getVx() const { return vx; }   // Dodane
-    void setVx(float n) { vx = n; }      // Dodane
+    float getVx() const { return vx; }   
+    void setVx(float n) { vx = n; }      
 
     
     sf::Vector2f getPosition() const { return sf::Vector2f(x, y); }
@@ -75,3 +75,4 @@ public:
     float getRadius() const { return radius; }
 
 };
+
